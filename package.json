@@ -1,0 +1,16 @@
+{
+  "name": "@am/files",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "flat": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./am-meta.js": "./am-meta.js"
+  },
+  "dependencies": {
+    "busboy": "^0.3.1",
+    "minio": "^7.0.18"
+  }
+}

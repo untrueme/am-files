@@ -10,7 +10,6 @@
     "./am-meta.js": "./am-meta.js"
   },
   "dependencies": {
-    "busboy": "^0.3.1",
-    "minio": "^7.0.18"
+    "async-busboy": "^1.1.0"
   }
 }

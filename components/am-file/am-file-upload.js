@@ -35,15 +35,15 @@ class AmFileUpload extends LitElement {
             }
 
             .uploader-container{
-                width: 484px;
-                height: 88px;
-                border: 1.5px dashed #E4E6E9;
+                width: 300px;
+                height: 108px;
+                border: 2px dashed var(--grey-lightest);
                 box-sizing: border-box;
                 display:flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-
+                border-radius: 4px;
             }
 
             :host([hidden]) .uploader-container{
@@ -55,11 +55,13 @@ class AmFileUpload extends LitElement {
             }
 
             :host(:hover) .uploader-container{
-                border: 1.5px dashed #97A1AD;
+                background: var(--grey-lightest);
+                border: 2px dashed  var(--grey-dark);
             }
 
             :host([dragactive]) .uploader-container{
-                background: #E4E6E9;
+                background: var(--primary-lightest);
+                border: 2px dashed  var(--primary-base);
             }
               
             .hint {
@@ -73,8 +75,8 @@ class AmFileUpload extends LitElement {
         return html`
             <div class="uploader-container" @click=${this.onFileClick}>
                 <input title="uploader" id="fileInput" accept="${this.accept}" type="file" multiple=${this.multiple} @change="${this.onFileInputChange}" hidden/>
-                <am-button label="Загрузить"></am-button>
-                <span class="hint">или перетащить в выделенную область</span>
+                <am-button variant="secondary" label="Загрузить"></am-button>
+                <span class="hint">Перетащите файлы или нажмите здесь, чтобы загрузить</span>
             </div>
             <am-file-preview .files=${this.files}></am-file-preview>
         `;

@@ -16,12 +16,27 @@ class AmFilePreview extends LitElement {
 
     static get styles() {
         return css`
-            .file-info-container {
-                width: 484px;
+            :host{
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .cont {
+                width: 300px;
                 height: 64px;
-                background: rgba(242, 244, 248, 0.6);
+                display:flex;
+                flex-direction:column;
+                box-sizing: border-box;
+                border: 1px solid var(--grey-light);
+                border-radius: 4px;
+            }
+
+            .file-info-container {
+                width: 300px;
                 display:flex;
                 flex-direction:row;
+                height: 100%;
             }
 
             .img {
@@ -29,7 +44,7 @@ class AmFilePreview extends LitElement {
                 margin: 8px;
             }
 
-            .progress {
+            progress {
                 width: 100%;
             }
 
@@ -39,6 +54,18 @@ class AmFilePreview extends LitElement {
                 flex: 1;
                 margin-right: 8px;
                 justify-content: center;
+            }
+
+            .name {
+                font-family: 'Golos Regular';
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 150%;
+            }
+
+            .size {
+                font-size: 12px;
+                color: var(--grey-dark);
             }
         `;
     }
@@ -51,18 +78,20 @@ class AmFilePreview extends LitElement {
     render() {
         return html`
             ${repeat(this.files, (file) => file.id, (file, index) => html`
-            <div class="file-info-container">
-                <div class="img">
-                     <img width="48px" height="48px">
-                </div>
-                <div class="data-container">
-                    <div class="name" >
-                        ${file.name}                    
+                <div class="cont">
+                    <div class="file-info-container">
+                        <div class="img">
+                            <lit-icon iconset="iconset-32" size="32" icon="upload"></lit-icon>
+                        </div>
+                        <div class="data-container">
+                            <div class="name" >
+                                ${file.name}                    
+                            </div>
+                            <div class="size">${this.getFileSize(file.loaded, file.size)}</div>
+                        </div>
                     </div>
                     <progress class="progress"  max="100" value="${file.progress}"></progress>
-                    <div class="size">${this.getFileSize(file.loaded, file.size)}</div>
                 </div>
-            </div>
             `)}
         `;
     }

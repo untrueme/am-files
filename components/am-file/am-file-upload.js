@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import '/components/am-file/am-file-preview.js';
+import 'lit-icon/pkg/dist-src/lit-icon.js';
 
 class AmFileUpload extends LitElement {
     static get properties() {
@@ -39,16 +40,29 @@ class AmFileUpload extends LitElement {
                 height: 108px;
                 border: 2px dashed var(--grey-lightest);
                 box-sizing: border-box;
-                display:flex;
+                display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 border-radius: 4px;
+                font-size: 13px;
+                padding: 16px;
+                display: flex;
+                gap: 8px;
+                color: var(--grey-dark);
+                line-height: 130%;
+                text-align: center;
             }
 
             :host([hidden]) .uploader-container{
                 display: none !important;
             }
+
+            lit-icon {
+                width: 32px;
+                height: 32px;
+            }
+
 
             :host([required]) .uploader-container{
                 background: #FFE5B6
@@ -62,11 +76,7 @@ class AmFileUpload extends LitElement {
             :host([dragactive]) .uploader-container{
                 background: var(--primary-lightest);
                 border: 2px dashed  var(--primary-base);
-            }
-              
-            .hint {
-                font-size: 10px;
-                color: #97A0A0;
+                color: var(--primary-light);
             }
         `;
     }
@@ -75,7 +85,8 @@ class AmFileUpload extends LitElement {
         return html`
             <div class="uploader-container" @click=${this.onFileClick}>
                 <input title="uploader" id="fileInput" accept="${this.accept}" type="file" multiple=${this.multiple} @change="${this.onFileInputChange}" hidden/>
-                <am-button variant="secondary" label="Загрузить"></am-button>
+                <lit-icon iconset="iconset-32" size="32" icon="upload"></lit-icon>
+
                 <span class="hint">Перетащите файлы или нажмите здесь, чтобы загрузить</span>
             </div>
             <am-file-preview .files=${this.files}></am-file-preview>
